@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .summary-container {
+            margin-top: 20px;
+            width: 50%;
+            max-width: 600px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        pre {
+            white-space: pre-wrap;  /* Ensures text wraps properly */
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Summarizer</h1>
+    <form method="POST">
+        <textarea name="user_text" placeholder="Enter your text here..." required></textarea>
+        <button type="submit">Summarize</button>
+    </form>
+
+    {% if summary %}
+    <div class="summary-container">
+        <h2>Summary</h2>
+        <pre>{{ summary }}</pre>
+        <a href="/download"><button>Download PDF</button></a>
+    </div>
+
+    <script>
+        // Auto-scroll the summary container to the top when loaded
+        const container = document.getElementById("summary-container");
+        container.scrollTop = 0;
+    </script>
+
+    {% endif %}
+
+</body>
+</html>
